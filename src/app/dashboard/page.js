@@ -37,7 +37,7 @@ const Dashboard = () => {
     loadWebGL && (
       <Fragment>
         {!isLoaded && (
-          <p>Loading Application .... {Math.round(loadingProgression * 100)}</p>
+          <p>Loading Application ... {Math.round(loadingProgression * 100)}</p>
         )}
         <Unity
           unityProvider={unityProvider}
