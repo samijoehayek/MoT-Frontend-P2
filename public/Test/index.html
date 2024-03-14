@@ -3,25 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | AmazonPayment</title>
+    <title>Unity WebGL Player | MOT2.0_Project</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="TemplateData/diagnostics.css">
+    <script src="TemplateData/diagnostics.js"></script>
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+    <div id="unity-container" style="width: 100%; height: 99.59%">
+      <canvas id="unity-canvas" width=auto height=auto tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
       </div>
-      <div id="unity-warning"> </div>
+     <!-- <div id="unity-warning"> </div>
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">AmazonPayment</div>
-      </div>
+        <img id="diagnostics-icon" src="TemplateData/webmemd-icon.png">
+        <div id="unity-build-title">MOT2.0_Project</div>
+      </div> -->
     </div>
     <script>
 
@@ -31,6 +34,7 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+      var diagnostics_icon = document.getElementById("diagnostics-icon");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -57,15 +61,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Build.loader.js";
+      var loaderUrl = buildUrl + "/testbuild11.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Build.data.unityweb",
-        frameworkUrl: buildUrl + "/Build.framework.js.unityweb",
-        codeUrl: buildUrl + "/Build.wasm.unityweb",
+        dataUrl: buildUrl + "/testbuild11.data",
+        frameworkUrl: buildUrl + "/testbuild11.framework.js",
+        codeUrl: buildUrl + "/testbuild11.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "STC",
-        productName: "AmazonPayment",
-        productVersion: "0.1.0",
+        companyName: "Ministry of Tourism",
+        productName: "MOT2.0_Project",
+        productVersion: "1.0",
         showBanner: unityShowBanner,
       };
 
@@ -90,12 +94,17 @@
         // performance, uncomment the following line:
         // config.devicePixelRatio = 1;
 
+        // position the diagnostics icon in the corner on the canvas
+        diagnostics_icon.style.position = "fixed";
+        diagnostics_icon.style.bottom = "10px";
+        diagnostics_icon.style.right = "0px";
+        canvas.after(diagnostics_icon);
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
       }
 
       loadingBar.style.display = "block";
@@ -107,16 +116,20 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
+  
+         
               }).catch((message) => {
                 alert(message);
               });
             };
 
       document.body.appendChild(script);
-
+	  
+	 function printdate() {
+        unityInstance.SetFullscreen(1);
+     }
+	 
+	 printdate();
     </script>
   </body>
 </html>
